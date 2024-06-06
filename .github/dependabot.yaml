@@ -1,11 +1,11 @@
 version: 2
 updates:
   - package-ecosystem: "gomod"
-    directory: "./super_calculator/super_calculator"
+    directory: "./super_calculator"
     schedule:
       interval: "daily"
 
   - package-ecosystem: "docker"
-    directory: "./super_calculator/super_calculator"
+    directory: "./super_calculator"
     schedule:
       interval: "daily"
