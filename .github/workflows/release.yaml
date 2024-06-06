@@ -24,4 +24,4 @@ jobs:
         - uses: docker/build-push-action@v3
           with:
             push: true
-            tags: "${{secrets.DOCKERHUB_USERNAME}}/calculator:${{ github.ref_name}}"
+            tags: "${{secrets.DOCKERHUB_USERNAME}}/devops_project:${{ github.ref_name}}"
