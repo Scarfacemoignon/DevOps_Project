@@ -1,52 +1,41 @@
-name: Linting Workflow
+name: Lint Workflow
 
 on:
   pull_request:
   push:
-  workflow_dispatch:  # Permet de déclencher le workflow manuellement
+  workflow_dispatch:
 
 jobs:
   semgrep:
-    name: Analyse statique avec Semgrep
     runs-on: ubuntu-latest
     steps:
-      - name: Récupérer le code
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Installer Semgrep
-        run: |
-          pip install semgrep
-
-      - name: Exécuter Semgrep
-        run: |
-          semgrep --config=auto --error
+      - name: Semgrep Static Analysis
+        uses: returntocorp/semgrep-action@v1
 
   hadolint:
-    name: Analyse du Dockerfile avec Hadolint
     runs-on: ubuntu-latest
     steps:
-      - name: Récupérer le code
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Installer Hadolint
-        run: |
-          wget -O hadolint https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64
-          chmod +x hadolint
-
-      - name: Analyser le Dockerfile avec Hadolint
-        run: |
-          if [ -f Dockerfile ]; then ./hadolint Dockerfile; else echo "Pas de Dockerfile trouvé"; fi
+      - name: Hadolint Dockerfile Analysis
+        uses: hadolint/hadolint-action@v1.5.0
+        with:
+          dockerfile: Dockerfile
 
   super-linter:
-    if: github.event_name == 'pull_request'  # Ce job ne s'exécute que pour les pull requests
-    name: Linting avec Super-Linter
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
-      - name: Récupérer le code
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Exécuter Super-Linter
-        uses: github/super-linter@v5
+      - name: Run Super-Linter
+        uses: github/super-linter@v4
         env:
-          VALIDATE_ALL_CODEBASE: false  # Ne vérifie que les fichiers modifiés
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
