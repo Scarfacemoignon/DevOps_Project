@@ -30,12 +30,12 @@ jobs:
 
       - name: Installer Hadolint
         run: |
-          wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64
-          chmod +x /bin/hadolint
+          wget -O hadolint https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64
+          chmod +x hadolint
 
       - name: Analyser le Dockerfile avec Hadolint
         run: |
-          if [ -f Dockerfile ]; then hadolint Dockerfile; else echo "Pas de Dockerfile trouvé"; fi
+          if [ -f Dockerfile ]; then ./hadolint Dockerfile; else echo "Pas de Dockerfile trouvé"; fi
 
   super-linter:
     if: github.event_name == 'pull_request'  # Ce job ne s'exécute que pour les pull requests
