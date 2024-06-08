@@ -1,0 +1,52 @@
+name: Linting Workflow
+
+on:
+  pull_request:
+  push:
+  workflow_dispatch:  # Permet de déclencher le workflow manuellement
+
+jobs:
+  semgrep:
+    name: Analyse statique avec Semgrep
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v3
+
+      - name: Installer Semgrep
+        run: |
+          pip install semgrep
+
+      - name: Exécuter Semgrep
+        run: |
+          semgrep --config=auto --error
+
+  hadolint:
+    name: Analyse du Dockerfile avec Hadolint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v3
+
+      - name: Installer Hadolint
+        run: |
+          wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64
+          chmod +x /bin/hadolint
+
+      - name: Analyser le Dockerfile avec Hadolint
+        run: |
+          if [ -f Dockerfile ]; then hadolint Dockerfile; else echo "Pas de Dockerfile trouvé"; fi
+
+  super-linter:
+    if: github.event_name == 'pull_request'  # Ce job ne s'exécute que pour les pull requests
+    name: Linting avec Super-Linter
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v3
+
+      - name: Exécuter Super-Linter
+        uses: github/super-linter@v5
+        env:
+          VALIDATE_ALL_CODEBASE: false  # Ne vérifie que les fichiers modifiés
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
