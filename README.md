@@ -1,77 +1,41 @@
-# Simple calculator
+# SuperCalculator
 
-This is a simple calculator made in go !
+## Introduction
 
-It supports :
+SuperCalculator est un projet développé chez SuperMath, une entreprise spécialisée dans les calculs mathématiques avancés. Ce projet vise à créer une calculatrice avec une puissance de calcul équivalente à celle du terminator. Le projet est écrit en Go et comprend des tests unitaires pour garantir sa qualité.
 
-- division
-- multiplication
-- addition
-- subtraction
+## Dépendances
 
-## Usage example
+- Go 1.17, 1.18, 1.19
+- Docker
 
-```text
-This is a simple calculator application.
-It supports Addition, Subtraction, Division, Multiplication.
-Specify the numbers to use with --x or --y.
-Default values for x and y are 0.
+## Workflows GitHub Actions
 
-Usage:
-  calculator [command]
+Le projet SuperCalculator utilise GitHub Actions pour automatiser différentes tâches telles que le linting, les tests et la création de releases. Voici une vue d'ensemble des workflows disponibles :
 
-Available Commands:
-  add         Addition of x and y
-  completion  Generate the autocompletion script for the specified shell
-  div         Division of x and y
-  help        Help about any command
-  mul         Multiplication of x and y
-  sub         Subtraction of x and y
+1. **Release Workflow** : Ce workflow est déclenché lorsqu'un tag est créé dans le dépôt. Il utilise goreleaser pour compiler le projet pour différentes plates-formes et crée une image Docker en fonction du tag de version.
 
-Flags:
-  -h, --help     help for calculator
-  -t, --toggle   Help message for toggle
+2. **Lint Workflow** : Ce workflow est déclenché par les événements pull_request, push et les déclencheurs manuels. Il effectue une analyse statique avec Semgrep, une analyse du Dockerfile avec Hadolint et une exécution de Super-Linter pour vérifier la qualité du code.
 
-Use "calculator [command] --help" for more information about a command.
-```
+3. **Test Workflow** : Ce workflow est déclenché à chaque push et vise à exécuter les tests unitaires du projet sur les versions 1.17, 1.18 et 1.19 de Go.
 
-## Example usage
+## Instructions d'Utilisation
 
-### Addition
+Pour contribuer au projet ou l'utiliser localement, suivez ces étapes :
+
+1. Clonez le dépôt sur votre machine locale :
 
 ```bash
-./calculator add --x 5 4
-4.000000 + 5.000000 = 9.000000
+git clone https://github.com/votre-utilisateur/SuperCalculator.git
+cd SuperCalculator
 ```
 
-### Subtraction
+- Installez Go (si ce n'est pas déjà fait)
+- Assurez-vous que votre version de Go est 1.17, 1.18 ou 1.19
+- Installez Docker (si ce n'est pas déjà fait)
 
-```bash
-./calculator sub --x 5 4
-4.000000 - 5.000000 = -1.000000
+# Exécutez les tests unitaires
+```Commande
+go test ./...
 ```
-
-### Multiplication
-
-```bash
-./calculator mul --x 5 4
-4.000000 * 5.000000 = 20.000000
-```
-
-### Division
-
-```bash
-./calculator div --x 5 4
-4.000000 / 5.000000 = 0.800000
-```
-
-## Test execution
-
-This application uses the default go test integration.
-
-```text
-> go test ./...
-?       calculator                  [no test files]
-?       calculator/cmd              [no test files]
-ok      calculator/internals/math   0.002s
-```
+N'oubliez pas de personnaliser ce README en fonction des détails spécifiques de votre projet, tels que le contenu des workflows, les dépendances et les instructions d'installation.
