@@ -1,77 +1,30 @@
-# Simple calculator
+# SuperCalculator
 
-This is a simple calculator made in go !
+![SuperCalculator Logo](img\calculator.png)
 
-It supports :
+## Introduction
 
-- division
-- multiplication
-- addition
-- subtraction
+**SuperCalculator** est un projet développé par **SuperMath**, une entreprise renommée pour ses solutions de calculs mathématiques avancés. SuperCalculator est conçu pour être une calculatrice ultra-puissante, capable de traiter des calculs mathématiques complexes avec une efficacité et une rapidité remarquables, grâce à sa base de code écrite en Go.
 
-## Usage example
+## Fonctionnalités
 
-```text
-This is a simple calculator application.
-It supports Addition, Subtraction, Division, Multiplication.
-Specify the numbers to use with --x or --y.
-Default values for x and y are 0.
+- **Calculs Avancés** : SuperCalculator peut gérer des opérations mathématiques très complexes, y compris l'algèbre linéaire, le calcul différentiel et intégral, et bien plus encore.
+- **Performances Optimisées** : Écrit en Go, SuperCalculator tire parti de la gestion efficace des threads et des performances optimales de ce langage pour offrir des calculs rapides.
+- **Support Multi-Plateforme** : SuperCalculator est compilé pour fonctionner sur plusieurs systèmes d'exploitation, incluant Windows, macOS, et Linux.
+- **Intégration Docker** : L'application peut être déployée facilement en tant qu'image Docker, facilitant son utilisation dans des environnements de production.
+- **Automatisation DevOps** : Grâce à l'intégration de GitHub Actions, les tâches de développement telles que le déploiement, les tests et l'analyse statique sont automatisées.
 
-Usage:
-  calculator [command]
+## Installation
 
-Available Commands:
-  add         Addition of x and y
-  completion  Generate the autocompletion script for the specified shell
-  div         Division of x and y
-  help        Help about any command
-  mul         Multiplication of x and y
-  sub         Subtraction of x and y
+### Prérequis
 
-Flags:
-  -h, --help     help for calculator
-  -t, --toggle   Help message for toggle
+- **Go** : Vous devez avoir Go installé sur votre système. [Télécharger Go](https://golang.org/dl/)
+- **Docker** : Pour exécuter l'application via Docker, assurez-vous que Docker est installé. [Télécharger Docker](https://www.docker.com/get-started)
 
-Use "calculator [command] --help" for more information about a command.
-```
+### Cloner le Répertoire
 
-## Example usage
-
-### Addition
+Clonez le dépôt SuperCalculator sur votre machine locale :
 
 ```bash
-./calculator add --x 5 4
-4.000000 + 5.000000 = 9.000000
-```
-
-### Subtraction
-
-```bash
-./calculator sub --x 5 4
-4.000000 - 5.000000 = -1.000000
-```
-
-### Multiplication
-
-```bash
-./calculator mul --x 5 4
-4.000000 * 5.000000 = 20.000000
-```
-
-### Division
-
-```bash
-./calculator div --x 5 4
-4.000000 / 5.000000 = 0.800000
-```
-
-## Test execution
-
-This application uses the default go test integration.
-
-```text
-> go test ./...
-?       calculator                  [no test files]
-?       calculator/cmd              [no test files]
-ok      calculator/internals/math   0.002s
-```
+git clone https://github.com/Scarfacemoignon/DevOps_Project.git
+cd DevOps_Project
