@@ -1,6 +1,6 @@
 # SuperCalculator
 
-![SuperCalculator Logo](img\calculator.png)
+![SuperCalculator Logo](.github\img\calculator.png)
 
 ## Introduction
 
