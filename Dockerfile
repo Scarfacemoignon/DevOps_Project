@@ -5,16 +5,15 @@ FROM golang:1.19-buster AS build
 WORKDIR /app
 
 # Copier les fichiers de gestion des dépendances
-COPY go.mod ./
-COPY go.sum ./
+COPY go.mod go.sum ./
 
-# Télécharger les dépendances
+# Télécharger et vérifier les dépendances
 RUN go mod download
 
-# Copier tout le code source dans le répertoire de travail
+# Copier tout le code source
 COPY . .
 
-# Construire l'application
+# Compiler l'application
 RUN go build -o /calculator
 
 # Étape finale avec l'image Distroless
