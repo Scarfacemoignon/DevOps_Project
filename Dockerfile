@@ -1,5 +1,5 @@
 # Étape de construction avec Go 1.19
-FROM golang:1.19-buster AS build
+FROM golang:1.20-buster AS build
 
 # Définir le répertoire de travail
 WORKDIR /app
